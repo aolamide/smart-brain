@@ -46,7 +46,7 @@ class App extends Component {
   loadUser = (data) => {
     this.setState({
       user : {
-        id: data.id,
+        id: data._id,
         name : data.name,
         email: data.email,
         entries : data.entries,
@@ -88,7 +88,7 @@ class App extends Component {
     })
     .then(res => res.json())
   	.then(response => {
-      if(response){
+      if(!response.err){
         fetch('http://localhost:3003/image',{
           method : 'put',
           headers : {'Content-Type': 'application/json'},
@@ -101,8 +101,8 @@ class App extends Component {
           this.setState(Object.assign(this.state.user, {entries : count}))
         })
         .catch(console.log)
+        this.displayFaceBox(this.calculateFaceLocation(response))
       }
-      this.displayFaceBox(this.calculateFaceLocation(response))
     })
     .catch(err => console.log(err))
   }
