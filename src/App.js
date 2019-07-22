@@ -79,7 +79,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({imageUrl : this.state.input });
-  	fetch('http://localhost:3003/imageurl',{
+  	fetch('https://olasmartbrainapp.herokuapp.com//imageurl',{
       method : 'post',
       headers : {'Content-Type': 'application/json'},
       body : JSON.stringify({
@@ -89,7 +89,7 @@ class App extends Component {
     .then(res => res.json())
   	.then(response => {
       if(!response.err){
-        fetch('http://localhost:3003/image',{
+        fetch('https://olasmartbrainapp.herokuapp.com/image',{
           method : 'put',
           headers : {'Content-Type': 'application/json'},
           body : JSON.stringify({
